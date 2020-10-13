@@ -16,6 +16,12 @@ var rotateSpeed = 90/8;
 //var rotateSpeed = 2.25;
 var scrableCount = 0;
 
+var oldMouseX = 0;
+var oldMouseY = 0;
+var angleX = 0;
+var angleY = 0;
+var angleZ = 0;
+
 const white = 1;
 const orange = 2;
 const green = 3;
@@ -59,10 +65,34 @@ function draw() {
         angle = 0;
     } else {
         angle++;
-    }    
-    rotateX(parseInt(document.getElementById("RotateX").value) * Math.PI / 180);
-    rotateY(parseInt(document.getElementById("RotateY").value) * Math.PI / 180);
-    rotateZ(parseInt(document.getElementById("RotateZ").value) * Math.PI / 180);
+    }
+
+    if (mouseIsPressed) {
+        if (mouseY <= 600 && mouseX <= 800 && mouseY >= 0 && mouseX >= 0) {          
+            angleZ += radians(mouseY - oldMouseY);
+            var minus = 1;
+            console.log(angleZ * 180 / Math.PI )
+            if (angleZ * 180 / Math.PI > 90 && angleZ * 180 / Math.PI < 270) minus = -1;
+            angleY += radians(mouseX - oldMouseX) * minus;           
+
+        }
+    }
+    
+    oldMouseX = mouseX;
+    oldMouseY = mouseY;
+
+    if (angleZ > Math.PI * 2) angleZ -= Math.PI * 2
+    if (angleY > Math.PI * 2) angleY -= Math.PI * 2
+    if (angleZ < 0) angleZ += Math.PI * 2
+    if (angleY < 0) angleY += Math.PI * 2
+
+    rotateZ(angleZ);
+    rotateX(angleX);
+    rotateY(angleY);   
+
+    //rotateX(parseInt(document.getElementById("RotateX").value) * Math.PI / 180);
+    //rotateY(parseInt(document.getElementById("RotateY").value) * Math.PI / 180);
+    //rotateZ(parseInt(document.getElementById("RotateZ").value) * Math.PI / 180);
 
     if (scrableCount != 0 && !rubixRotatedX && !rubixRotatedY && !rubixRotatedZ) {
         ScrableRubix();

@@ -6,9 +6,10 @@
 <body>
     Size<input type="text" value="3" onchange="setup()" id="RubixSize"><br />
     RotateSpeed<input type="range" min="0" max="8" value="0" id="RotateSpeed"><br />
+    <!-- 
     RotateX<input type="range" min="0" max="360" value="0" id="RotateX"><br />
     RotateY<input type="range" min="0" max="360" value="0" id="RotateY"><br />
-    RotateZ<input type="range" min="0" max="360" value="0" id="RotateZ"><br />
+    RotateZ<input type="range" min="0" max="360" value="0" id="RotateZ"><br />-->
     <button onClick="scrableCount = 100">ScrableRubix</button>
     <table>
         <tr>
